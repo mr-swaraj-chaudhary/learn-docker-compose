@@ -1,6 +1,13 @@
 version: "1.0"
 services:
     storefront:
-        build: .
+        build:
+            context: .
+            args:
+                - region=us-east-1
+        environment:
+            - runtime=dev
     database:
         image: mysql
+        env_file:
+            - ./mysql/env_vars
