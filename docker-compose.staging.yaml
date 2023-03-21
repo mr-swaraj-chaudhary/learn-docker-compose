@@ -1,0 +1,7 @@
+services:
+    storefront:
+        environment:
+            - runtime=stage
+    scheduler:
+        environment:
+            - runtime=stage

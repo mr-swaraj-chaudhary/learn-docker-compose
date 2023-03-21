@@ -5,18 +5,20 @@ services:
             context: storefront/.
             args:
                 - region=us-east-1
-        environment:
-            - runtime=dev
         ports:
             - "81:80"
             - "443:443"
+        depends_on:
+            - database
     scheduler:
         build:
             context: scheduler/.
         ports:
             - "80:80"
+        depends_on:
+            - database
     database:
-        image: mysql
+        image: mysql:${TAG}
         env_file:
             - ./mysql/env_vars
         volumes:
