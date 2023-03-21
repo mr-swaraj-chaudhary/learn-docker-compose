@@ -2,11 +2,19 @@ version: "1.0"
 services:
     storefront:
         build:
-            context: .
+            context: storefront/.
             args:
                 - region=us-east-1
         environment:
             - runtime=dev
+        ports:
+            - "81:80"
+            - "443:443"
+    scheduler:
+        build:
+            context: scheduler/.
+        ports:
+            - "80:80"
     database:
         image: mysql
         env_file:
